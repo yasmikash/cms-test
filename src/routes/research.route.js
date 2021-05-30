@@ -18,7 +18,7 @@ module.exports = class UserRoute {
       this.researchController.createResearch
     );
     this.router.get(
-      `${this.path}/user/:userId`,
+      `${this.path}/users/:userId`,
       authorize("USER"),
       this.researchController.getResearch
     );

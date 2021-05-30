@@ -5,7 +5,7 @@ const authorize = require("../middlewares/authorize.middleware");
 
 module.exports = class UserRoute {
   constructor() {
-    this.path = "/admin";
+    this.path = "/admins";
     this.router = Router();
     this.researchController = new ResearchController();
     this.initializeRoutes();

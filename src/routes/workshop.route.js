@@ -5,7 +5,7 @@ const authorize = require("../middlewares/authorize.middleware");
 
 module.exports = class UserRoute {
   constructor() {
-    this.path = "/workshop";
+    this.path = "/workshops";
     this.router = Router();
     this.workshopController = new WorkshopController();
     this.initializeRoutes();
