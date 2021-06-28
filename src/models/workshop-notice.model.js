@@ -3,20 +3,21 @@ const Schema = mongoose.Schema;
 
 const { ObjectId } = mongoose.Types;
 
-const ResearchSchema = new Schema({
+const WorkshopSchema = new Schema({
   title: String,
   description: String,
-  researchFile: String,
-  topicInterests: [ObjectId],
-  customTopicInterests: [String],
-  pdf: String,
-  authors: [String],
+  flyer: String,
+  persons: [String],
+  startDate: Date,
+  starTime: Date,
+  endTime: Date,
   status: {
     type: String,
     default: "PENDING_REVIEW",
   },
+  reviewerDescription: String,
   createdDate: Date,
   user: ObjectId,
 });
 
-module.exports = mongoose.model("Research", ResearchSchema);
+module.exports = mongoose.model("Workshop", WorkshopSchema);

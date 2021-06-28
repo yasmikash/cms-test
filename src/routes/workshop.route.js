@@ -17,5 +17,10 @@ module.exports = class UserRoute {
       authorize("USER"),
       this.workshopController.createWorkshop
     );
+    this.router.post(
+      `${this.path}/create-notice`,
+      authorize("USER"),
+      this.workshopController.createWorkshopNotice
+    );
   }
 };

@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const fileUpload = require("express-fileupload");
 
 // Custom middlewares
 const errorMiddleware = require("./middlewares/error.middleware");
@@ -30,6 +31,7 @@ module.exports = class App {
   initializeMiddlewares() {
     this.app.use(cors());
     this.app.use(express.json());
+    this.app.use(fileUpload());
   }
 
   initializeRoutes() {
