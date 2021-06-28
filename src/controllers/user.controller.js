@@ -34,4 +34,13 @@ module.exports = class UserController {
       next(error);
     }
   };
+
+  getUser = async (req, res, next) => {
+    try {
+      const user = await this.userService.getUser(req.params.userId);
+      res.json(user);
+    } catch (error) {
+      next(error);
+    }
+  };
 };
