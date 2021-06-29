@@ -20,7 +20,7 @@ module.exports = class UserController {
     try {
       const research = await this.researchService.createResearch(
         req.body,
-        req.body.user.id,
+        req.body.user,
         req.files
       );
       res.json(research);

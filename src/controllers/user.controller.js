@@ -55,4 +55,26 @@ module.exports = class UserController {
       next(error);
     }
   };
+
+  UpdateUser = async (req, res, next) => {
+    try {
+      const user = await this.userService.updateUser(
+        req.body,
+        req.body.id,
+        req.body.type
+      );
+      res.json(user);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  deleteUserById = async (req, res, next) => {
+    try {
+      const user = await this.userService.deleteUserById(req.params.userId);
+      res.json(user);
+    } catch (error) {
+      next(error);
+    }
+  };
 };
