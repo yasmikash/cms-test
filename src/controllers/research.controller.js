@@ -31,7 +31,19 @@ module.exports = class UserController {
 
   createResearchNotice = async (req, res, next) => {
     try {
-      const research = await this.researchService.createResearch(
+      const research = await this.researchService.createResearchNotice(
+        req.body.user.id,
+        req.params.researchId
+      );
+      res.json(research);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  approveResearchNotice = async (req, res, next) => {
+    try {
+      const research = await this.researchService.approveResearchNotice(
         req.body.user.id,
         req.params.researchId
       );

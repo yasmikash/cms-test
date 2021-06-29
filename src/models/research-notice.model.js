@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const { ObjectId } = mongoose.Types;
 
-const ResearchSchema = new Schema({
+const ResearchNoticeSchema = new Schema({
   title: String,
   description: String,
   researchFile: String,
@@ -17,6 +17,7 @@ const ResearchSchema = new Schema({
   },
   createdDate: Date,
   user: ObjectId,
+  admin: ObjectId,
 });
 
-module.exports = mongoose.model("Research", ResearchSchema);
+module.exports = mongoose.model("ResearchNotice", ResearchNoticeSchema);

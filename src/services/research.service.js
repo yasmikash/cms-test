@@ -46,4 +46,12 @@ module.exports = class ResearchService {
     const createdNotice = await researchNotice.save();
     return createdNotice;
   };
+
+  approveResearchNotice = async (adminId, researchNoticeId) => {
+    const researchNotice = await ResearchNoticeModel.find(researchNoticeId);
+    researchNotice.status = "APPROVED";
+    researchNotice.admin = adminId;
+    const updatedNotice = await researchNotice.save();
+    return updatedNotice;
+  };
 };

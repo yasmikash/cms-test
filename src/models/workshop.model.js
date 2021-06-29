@@ -18,6 +18,7 @@ const WorkshopSchema = new Schema({
   reviewerDescription: String,
   createdDate: Date,
   user: ObjectId,
+  admin: ObjectId,
 });
 
 module.exports = mongoose.model("Workshop", WorkshopSchema);

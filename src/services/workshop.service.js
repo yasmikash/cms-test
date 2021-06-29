@@ -21,4 +21,12 @@ module.exports = class ResearchService {
     const createdNotice = await workshopNotice.save();
     return createdNotice;
   };
+
+  approveWorkshopNotice = async (adminId, workshopNoticeId) => {
+    const workshopNotice = await WorkshopNoticeModel.find(workshopNoticeId);
+    workshopNotice.status = "APPROVED";
+    workshopNotice.admin = adminId;
+    const updatedNotice = await workshopNotice.save();
+    return updatedNotice;
+  };
 };

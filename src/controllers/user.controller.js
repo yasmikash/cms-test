@@ -26,6 +26,18 @@ module.exports = class UserController {
     }
   };
 
+  approveWorkshopNotice = async (req, res, next) => {
+    try {
+      const workshop = await this.workshopService.approveWorkshopNotice(
+        req.body.user.id,
+        req.params.researchId
+      );
+      res.json(workshop);
+    } catch (error) {
+      next(error);
+    }
+  };
+
   signUpAdmin = async (req, res, next) => {
     try {
       const createdAdmin = await this.userService.signUp(req.body, "ADMIN");

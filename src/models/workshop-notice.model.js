@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const { ObjectId } = mongoose.Types;
 
-const WorkshopSchema = new Schema({
+const WorkshopNoticeSchema = new Schema({
   title: String,
   description: String,
   flyer: String,
@@ -20,4 +20,4 @@ const WorkshopSchema = new Schema({
   user: ObjectId,
 });
 
-module.exports = mongoose.model("Workshop", WorkshopSchema);
+module.exports = mongoose.model("WorkshopNotice", WorkshopNoticeSchema);
