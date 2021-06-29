@@ -16,6 +16,26 @@ module.exports = class ResearchNoticeController {
     }
   };
 
+  getResearchNotices = async (req, res, next) => {
+    try {
+      const notices = await this.researchNoticeService.getResearchNotices();
+      res.json(notices);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  getResearchNotice = async (req, res, next) => {
+    try {
+      const notice = await this.researchNoticeService.getResearchNotice(
+        req.params.researchNoticeId
+      );
+      res.json(notice);
+    } catch (error) {
+      next(error);
+    }
+  };
+
   approveResearchNotice = async (req, res, next) => {
     try {
       const research = await this.researchNoticeService.approveResearchNotice(
@@ -23,6 +43,18 @@ module.exports = class ResearchNoticeController {
         req.params.researchId
       );
       res.json(research);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  deleteResearchNotice = async (req, res, next) => {
+    try {
+      const deletedResearch =
+        await this.researchNoticeService.deleteResearchNotice(
+          req.params.researchId
+        );
+      res.json(deletedResearch);
     } catch (error) {
       next(error);
     }

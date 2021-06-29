@@ -6,7 +6,7 @@ const authorize = require("../middlewares/authorize.middleware");
 
 module.exports = class UserRoute {
   constructor() {
-    this.path = "/research-notice";
+    this.path = "/research-notices";
     this.router = Router();
     this.researchController = new ResearchController();
     this.researchNoticeController = new ResearchNoticeController();
@@ -14,6 +14,16 @@ module.exports = class UserRoute {
   }
 
   initializeRoutes() {
+    this.router.get(
+      `${this.path}`,
+      //authorize("ADMIN"),
+      this.researchNoticeController.getResearchNotices
+    );
+    this.router.get(
+      `${this.path}/:researchNoticeId`,
+      //authorize("ADMIN"),
+      this.researchNoticeController.getResearchNotice
+    );
     this.router.post(
       `${this.path}/:researchId`,
       //authorize("USER"),
@@ -23,6 +33,11 @@ module.exports = class UserRoute {
       `${this.path}/:researchId/approve`,
       //authorize("ADMIN"),
       this.researchNoticeController.approveResearchNotice
+    );
+    this.router.delete(
+      `${this.path}/:researchId`,
+      //authorize("ADMIN"),
+      this.researchNoticeController.deleteResearchNotice
     );
   }
 };
