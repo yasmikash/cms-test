@@ -7,7 +7,7 @@ const WorkshopNoticeSchema = new Schema({
   title: String,
   description: String,
   flyer: String,
-  persons: [String],
+  persons: String,
   startDate: Date,
   starTime: Date,
   endTime: Date,

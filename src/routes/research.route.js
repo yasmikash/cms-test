@@ -17,15 +17,15 @@ module.exports = class UserRoute {
       authorize("USER"),
       this.researchController.createResearch
     );
-    this.router.post(
-      `${this.path}/create-notice`,
-      authorize("USER"),
-      this.researchController.createResearchNotice
-    );
     this.router.get(
       `${this.path}/users/:userId`,
       authorize("USER"),
       this.researchController.getResearch
+    );
+    this.router.get(
+      `${this.path}`,
+      //authorize("USER"),
+      this.researchController.getAllResearch
     );
   }
 };

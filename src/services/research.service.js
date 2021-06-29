@@ -3,9 +3,7 @@ const v4 = require("uuid").v4;
 const HTTPException = require("../exceptions/HTTPException");
 const ResearchTopicModel = require("../models/research-topic.model");
 const ResearchModel = require("../models/research.model");
-const ResearchNoticeModel = require("../models/research-notice.model");
 const config = require("../util/config");
-
 module.exports = class ResearchService {
   createResearchTopic = async (data) => {
     const researchTopic = new ResearchTopicModel(data);
@@ -36,22 +34,8 @@ module.exports = class ResearchService {
     return research;
   };
 
-  createResearchNotice = async (userId, researchId) => {
-    const research = await ResearchModel.find(researchId);
-    const researchNotice = new ResearchNoticeModel({
-      ...research,
-      createdDate: new Date(),
-      user: userId,
-    });
-    const createdNotice = await researchNotice.save();
-    return createdNotice;
-  };
-
-  approveResearchNotice = async (adminId, researchNoticeId) => {
-    const researchNotice = await ResearchNoticeModel.find(researchNoticeId);
-    researchNotice.status = "APPROVED";
-    researchNotice.admin = adminId;
-    const updatedNotice = await researchNotice.save();
-    return updatedNotice;
+  getAllResearch = async () => {
+    const research = await ResearchModel.find();
+    return research;
   };
 };

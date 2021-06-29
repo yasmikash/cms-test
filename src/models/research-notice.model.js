@@ -7,10 +7,10 @@ const ResearchNoticeSchema = new Schema({
   title: String,
   description: String,
   researchFile: String,
-  topicInterests: [ObjectId],
-  customTopicInterests: [String],
+  topicInterests: String,
+  customTopicInterests: String,
   pdf: String,
-  authors: [String],
+  authors: String,
   status: {
     type: String,
     default: "PENDING_REVIEW",

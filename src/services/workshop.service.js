@@ -1,7 +1,12 @@
 const WorkshopModel = require("../models/workshop.model");
-const WorkshopNoticeModel = require("../models/workshop-notice.model");
 module.exports = class ResearchService {
-  createWorkshop = async (data) => {
+  createWorkshop = async (data, files) => {
+    if (!files)
+      throw HTTPException.createValidationError(
+        "Flyer file should be uploaded"
+      );
+    const researchFile = `${v4()}.jpg`;
+    await files.researchFile.mv(`${config.uploadPath}/${researchFile}`);
     const workshop = new WorkshopModel({
       ...data,
       user: data.user.id,
@@ -9,24 +14,5 @@ module.exports = class ResearchService {
     });
     const workshopCreated = await workshop.save();
     return workshopCreated;
-  };
-
-  createWorkshopNotice = async (userId, workshopId) => {
-    const workshop = await WorkshopModel.find(workshopId);
-    const workshopNotice = new WorkshopNotice({
-      ...workshop,
-      createdDate: new Date(),
-      user: userId,
-    });
-    const createdNotice = await workshopNotice.save();
-    return createdNotice;
-  };
-
-  approveWorkshopNotice = async (adminId, workshopNoticeId) => {
-    const workshopNotice = await WorkshopNoticeModel.find(workshopNoticeId);
-    workshopNotice.status = "APPROVED";
-    workshopNotice.admin = adminId;
-    const updatedNotice = await workshopNotice.save();
-    return updatedNotice;
   };
 };

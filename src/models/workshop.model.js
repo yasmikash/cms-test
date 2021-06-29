@@ -6,8 +6,8 @@ const { ObjectId } = mongoose.Types;
 const WorkshopSchema = new Schema({
   title: String,
   description: String,
-  flyer: String,
-  persons: [String],
+  flyerFile: String,
+  persons: String,
   startDate: Date,
   starTime: Date,
   endTime: Date,
