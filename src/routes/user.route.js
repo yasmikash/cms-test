@@ -14,5 +14,10 @@ module.exports = class UserRoute {
   initializeRoutes() {
     this.router.post(`${this.path}/sign-in`, this.userController.signIn);
     this.router.post(`${this.path}/sign-up`, this.userController.signUp);
+    this.router.get(
+      `${this.path}/:userId`,
+      authorize("USER"),
+      this.userController.getUser
+    );
   }
 };
