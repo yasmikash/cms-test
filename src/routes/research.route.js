@@ -14,18 +14,33 @@ module.exports = class UserRoute {
   initializeRoutes() {
     this.router.post(
       `${this.path}`,
-      authorize("USER"),
+      // authorize("USER"),
       this.researchController.createResearch
     );
     this.router.get(
       `${this.path}/users/:userId`,
-      authorize("USER"),
+      // authorize("USER"),
       this.researchController.getResearch
     );
     this.router.get(
       `${this.path}`,
       //authorize("USER"),
       this.researchController.getAllResearch
+    );
+    this.router.patch(
+      `${this.path}/update`,
+      //authorize("USER"),
+      this.researchController.UpdateResearch
+    );
+    this.router.get(
+      `${this.path}/:researchId`,
+      // authorize("USER"),
+      this.researchController.getResearchById
+    );
+    this.router.delete(
+      `${this.path}/delete/:researchId`,
+      // authorize("USER"),
+      this.researchController.deleteResearchById
     );
   }
 };

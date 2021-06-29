@@ -16,7 +16,7 @@ module.exports = class UserRoute {
     this.router.post(`${this.path}/sign-up`, this.userController.signUp);
     this.router.get(
       `${this.path}/:userId`,
-      authorize("USER"),
+      // authorize("USER"),
       this.userController.getUser
     );
   }
