@@ -33,4 +33,9 @@ module.exports = class UserService {
     const user = await UserModel.findOne({ username, type });
     return user;
   };
+
+  getUser = async (userId) => {
+    const user = await UserModel.find({ _id: userId });
+    return user;
+  };
 };
