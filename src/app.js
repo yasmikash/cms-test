@@ -45,6 +45,7 @@ module.exports = class App {
       await mongoose.connect(process.env.MONGO_CONNECT_STRING, {
         useUnifiedTopology: true,
         useNewUrlParser: true,
+        useFindAndModify: false,
       });
     } catch (error) {
       throw error;

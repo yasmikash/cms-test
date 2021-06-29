@@ -47,12 +47,13 @@ module.exports = class ResearchService {
     const researchFile = `${v4()}.pdf`;
     await files.researchFile.mv(`${config.uploadPath}/${researchFile}`);
 
-    const research = ResearchModel.findByIdAndUpdate(id, {
+    await ResearchModel.findByIdAndUpdate(id, {
       ...data,
       researchFile,
       createdDate: new Date(),
     });
 
+    const research = await ResearchModel.find({ _id: id });
     return research;
   };
 

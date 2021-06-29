@@ -38,4 +38,22 @@ module.exports = class UserService {
     const user = await UserModel.find({ _id: userId });
     return user;
   };
+
+  updateUser = async (data, id, userType) => {
+    const password = data.password;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await UserModel.findByIdAndUpdate(id, {
+      ...data,
+      type: userType,
+      password: hashedPassword,
+      createdDate: new Date(),
+    });
+    const userCreated = await UserModel.find({ _id: id });
+    return userCreated;
+  };
+
+  deleteUserById = async (userId) => {
+    const user = await UserModel.findByIdAndDelete(userId);
+    return user;
+  };
 };

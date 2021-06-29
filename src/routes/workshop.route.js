@@ -14,8 +14,28 @@ module.exports = class UserRoute {
   initializeRoutes() {
     this.router.post(
       `${this.path}`,
-      authorize("USER"),
+      // authorize("USER"),
       this.workshopController.createWorkshop
+    );
+    this.router.get(
+      `${this.path}/users/:userId`,
+      // authorize("USER"),
+      this.workshopController.getWorkshop
+    );
+    this.router.patch(
+      `${this.path}/update`,
+      //authorize("USER"),
+      this.workshopController.UpdateWorkshop
+    );
+    this.router.get(
+      `${this.path}/:workshopId`,
+      // authorize("USER"),
+      this.workshopController.getWorkshopId
+    );
+    this.router.delete(
+      `${this.path}/delete/:workshopId`,
+      // authorize("USER"),
+      this.workshopController.deleteWorkshopById
     );
   }
 };
