@@ -48,4 +48,39 @@ module.exports = class UserController {
       next(error);
     }
   };
+
+  UpdateResearch = async (req, res, next) => {
+    try {
+      const research = await this.researchService.UpdateResearch(
+        req.body,
+        req.body.id,
+        req.files
+      );
+      res.json(research);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  getResearchById = async (req, res, next) => {
+    try {
+      const research = await this.researchService.getResearchById(
+        req.params.researchId
+      );
+      res.json(research);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  deleteResearchById = async (req, res, next) => {
+    try {
+      const research = await this.researchService.deleteResearchById(
+        req.params.researchId
+      );
+      res.json(research);
+    } catch (error) {
+      next(error);
+    }
+  };
 };

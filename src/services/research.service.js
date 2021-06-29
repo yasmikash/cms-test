@@ -38,4 +38,31 @@ module.exports = class ResearchService {
     const research = await ResearchModel.find();
     return research;
   };
+
+  UpdateResearch = async (data, id, files) => {
+    if (!files)
+      throw HTTPException.createValidationError(
+        "Research paper file should be uploaded"
+      );
+    const researchFile = `${v4()}.pdf`;
+    await files.researchFile.mv(`${config.uploadPath}/${researchFile}`);
+
+    const research = ResearchModel.findByIdAndUpdate(id, {
+      ...data,
+      researchFile,
+      createdDate: new Date(),
+    });
+
+    return research;
+  };
+
+  getResearchById = async (researchId) => {
+    const research = await ResearchModel.find({ _id: researchId });
+    return research;
+  };
+
+  deleteResearchById = async (researchId) => {
+    const research = await ResearchModel.findByIdAndDelete(researchId);
+    return research;
+  };
 };
