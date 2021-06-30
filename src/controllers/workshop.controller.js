@@ -29,6 +29,15 @@ module.exports = class UserController {
     }
   };
 
+  getAllWorkshops = async (req, res, next) => {
+    try {
+      const research = await this.workshopService.getAllWorkshops();
+      res.json(research);
+    } catch (error) {
+      next(error);
+    }
+  };
+
   UpdateWorkshop = async (req, res, next) => {
     try {
       const workshop = await this.workshopService.UpdateWorkshop(

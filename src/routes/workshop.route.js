@@ -22,6 +22,11 @@ module.exports = class UserRoute {
       // authorize("USER"),
       this.workshopController.getWorkshop
     );
+    this.router.get(
+      `${this.path}/`,
+      // authorize("USER"),
+      this.workshopController.getAllWorkshops
+    );
     this.router.patch(
       `${this.path}/update`,
       //authorize("USER"),

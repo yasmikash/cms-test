@@ -51,6 +51,11 @@ module.exports = class WorkshopService {
     return workshop;
   };
 
+  getAllWorkshops = async () => {
+    const workshop = await WorkshopModel.find();
+    return workshop;
+  };
+
   deleteWorkshopById = async (workshopId) => {
     const workshop = await WorkshopModel.findByIdAndDelete(workshopId);
     return workshop;
