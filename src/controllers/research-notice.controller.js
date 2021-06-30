@@ -52,7 +52,7 @@ module.exports = class ResearchNoticeController {
     try {
       const deletedResearch =
         await this.researchNoticeService.deleteResearchNotice(
-          req.params.researchId
+          req.params.researchNoticeId
         );
       res.json(deletedResearch);
     } catch (error) {
