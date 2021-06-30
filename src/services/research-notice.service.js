@@ -12,7 +12,7 @@ module.exports = class ResearchNoticeService {
     if (!research)
       throw HTTPException.createValidationError("No such research");
     research.status = "NOTICE_CREATED";
-    await research.save();
+    await ResearchModel.updateOne(research);
     const createdNotice = await researchNotice.save();
     return createdNotice;
   };
