@@ -9,7 +9,8 @@ module.exports = class UserPaymentController {
     try {
       const payment = await this.userPaymentService.createPayment(
         req.body,
-        req.body.user
+        req.body.user,
+        req.body.researchId
       );
       res.json(payment);
     } catch (error) {

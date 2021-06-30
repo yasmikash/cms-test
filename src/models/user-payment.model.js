@@ -17,6 +17,7 @@ const UserPaymentSchema = new Schema({
   status: String,
   paidDate: Date,
   user: ObjectId,
+  researchId: ObjectId,
 });
 
 module.exports = mongoose.model("UserPayment", UserPaymentSchema);
