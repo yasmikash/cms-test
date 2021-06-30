@@ -30,12 +30,12 @@ module.exports = class UserRoute {
       this.researchNoticeController.createResearchNotice
     );
     this.router.post(
-      `${this.path}/:researchId/approve`,
+      `${this.path}/:researchNoticeId/approve`,
       //authorize("ADMIN"),
       this.researchNoticeController.approveResearchNotice
     );
     this.router.delete(
-      `${this.path}/:researchId`,
+      `${this.path}/:researchNoticeId`,
       //authorize("ADMIN"),
       this.researchNoticeController.deleteResearchNotice
     );

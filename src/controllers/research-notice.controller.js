@@ -40,7 +40,7 @@ module.exports = class ResearchNoticeController {
     try {
       const research = await this.researchNoticeService.approveResearchNotice(
         "60dabfd29fd86b413452a3b6", //TODO
-        req.params.researchId
+        req.params.researchNoticeId
       );
       res.json(research);
     } catch (error) {
