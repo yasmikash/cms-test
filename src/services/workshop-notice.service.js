@@ -12,7 +12,7 @@ module.exports = class ResearchNoticeService {
     if (!workshop)
       throw HTTPException.createValidationError("No such workshop");
     workshop.status = "NOTICE_CREATED";
-    await workshop.save();
+    await WorkshopModel.updateOne(workshop);
     const createdNotice = await workshopNotice.save();
     return createdNotice;
   };
