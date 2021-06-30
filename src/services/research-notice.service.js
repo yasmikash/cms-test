@@ -3,7 +3,9 @@ const ResearchNoticeModel = require("../models/research-notice.model");
 const HTTPException = require("../exceptions/HTTPException");
 module.exports = class ResearchNoticeService {
   createResearchNotice = async (userId, researchId) => {
-    const research = await ResearchModel.findById(researchId, "-_id");
+    const research = JSON.parse(
+      JSON.stringify(await ResearchModel.findById(researchId, "-_id"))
+    );
     const researchNotice = new ResearchNoticeModel({
       ...JSON.parse(JSON.stringify(research)),
       createdDate: new Date(),
@@ -12,7 +14,7 @@ module.exports = class ResearchNoticeService {
     if (!research)
       throw HTTPException.createValidationError("No such research");
     research.status = "NOTICE_CREATED";
-    await ResearchModel.updateOne(research);
+    await ResearchModel.findByIdAndUpdate(researchId, research);
     const createdNotice = await researchNotice.save();
     return createdNotice;
   };

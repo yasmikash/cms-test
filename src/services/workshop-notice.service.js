@@ -3,7 +3,9 @@ const WorkshopNoticeModel = require("../models/workshop-notice.model");
 const HTTPException = require("../exceptions/HTTPException");
 module.exports = class ResearchNoticeService {
   createWorkshopNotice = async (userId, workshopId) => {
-    const workshop = await WorkshopModel.findById(workshopId, "-_id");
+    const workshop = JSON.parse(
+      JSON.stringify(await WorkshopModel.findById(workshopId, "-_id"))
+    );
     const workshopNotice = new WorkshopNoticeModel({
       ...JSON.parse(JSON.stringify(workshop)),
       createdDate: new Date(),
@@ -12,7 +14,7 @@ module.exports = class ResearchNoticeService {
     if (!workshop)
       throw HTTPException.createValidationError("No such workshop");
     workshop.status = "NOTICE_CREATED";
-    await WorkshopModel.updateOne(workshop);
+    await WorkshopModel.findByIdAndUpdate(workshopId, workshop);
     const createdNotice = await workshopNotice.save();
     return createdNotice;
   };
