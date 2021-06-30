@@ -18,6 +18,16 @@ module.exports = class UserRoute {
       this.researchController.createResearch
     );
     this.router.get(
+      `${this.path}/topics`,
+      // authorize("USER"),
+      this.researchController.getResearchTopics
+    );
+    this.router.post(
+      `${this.path}/topics`,
+      // authorize("USER"),
+      this.researchController.createResearchTopic
+    );
+    this.router.get(
       `${this.path}/users/:userId`,
       // authorize("USER"),
       this.researchController.getResearch

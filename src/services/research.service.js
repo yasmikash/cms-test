@@ -11,6 +11,11 @@ module.exports = class ResearchService {
     return researchTopicCreated;
   };
 
+  getResearchTopics = async () => {
+    const researchTopics = await ResearchTopicModel.find();
+    return researchTopics;
+  };
+
   createResearch = async (data, userId, files) => {
     if (!files)
       throw HTTPException.createValidationError(

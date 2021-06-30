@@ -16,6 +16,15 @@ module.exports = class UserController {
     }
   };
 
+  getResearchTopics = async (req, res, next) => {
+    try {
+      const researchTopics = await this.researchService.getResearchTopics();
+      res.json(researchTopics);
+    } catch (error) {
+      next(error);
+    }
+  };
+
   createResearch = async (req, res, next) => {
     try {
       const research = await this.researchService.createResearch(
