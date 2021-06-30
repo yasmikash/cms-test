@@ -8,6 +8,8 @@ module.exports = class ResearchNoticeService {
       createdDate: new Date(),
       user: userId,
     });
+    workshop.status = "NOTICE_CREATED";
+    await workshop.save();
     const createdNotice = await workshopNotice.save();
     return createdNotice;
   };

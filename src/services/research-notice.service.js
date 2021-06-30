@@ -9,6 +9,8 @@ module.exports = class ResearchNoticeService {
       createdDate: new Date(),
       user: userId,
     });
+    research.status = "NOTICE_CREATED";
+    await research.save();
     const createdNotice = await researchNotice.save();
     return createdNotice;
   };
