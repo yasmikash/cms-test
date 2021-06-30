@@ -1,5 +1,6 @@
 const WorkshopModel = require("../models/workshop.model");
 const WorkshopNoticeModel = require("../models/workshop-notice.model");
+const HTTPException = require("../exceptions/HTTPException");
 module.exports = class ResearchNoticeService {
   createWorkshopNotice = async (userId, workshopId) => {
     const workshop = await WorkshopModel.findById(workshopId, "-_id");
@@ -8,6 +9,8 @@ module.exports = class ResearchNoticeService {
       createdDate: new Date(),
       user: userId,
     });
+    if (!research)
+      throw HTTPException.createValidationError("No such workshop");
     workshop.status = "NOTICE_CREATED";
     await workshop.save();
     const createdNotice = await workshopNotice.save();
