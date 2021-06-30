@@ -9,7 +9,7 @@ module.exports = class ResearchNoticeService {
       createdDate: new Date(),
       user: userId,
     });
-    if (!research)
+    if (!workshop)
       throw HTTPException.createValidationError("No such workshop");
     workshop.status = "NOTICE_CREATED";
     await workshop.save();
