@@ -9,8 +9,8 @@ const WorkshopSchema = new Schema({
   flyerFile: String,
   persons: String,
   startDate: Date,
-  starTime: Date,
-  endTime: Date,
+  startTime: String,
+  endTime: String,
   status: {
     type: String,
     default: "PENDING_REVIEW",
