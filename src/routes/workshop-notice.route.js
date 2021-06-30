@@ -13,15 +13,30 @@ module.exports = class UserRoute {
   }
 
   initializeRoutes() {
+    this.router.get(
+      `${this.path}`,
+      //authorize("USER"),
+      this.workshopNoticeController.getWorkshopNotices
+    );
+    this.router.get(
+      `${this.path}/:workshopNoticeId`,
+      //authorize("USER"),
+      this.workshopNoticeController.getWorkshopNotice
+    );
     this.router.post(
-      `${this.path}/:workshopId`,
+      `${this.path}/:workshopNoticeId`,
       //authorize("USER"),
       this.workshopNoticeController.createWorkshopNotice
     );
     this.router.post(
-      `${this.path}/:workshopId/approve`,
+      `${this.path}/:workshopNoticeId/approve`,
       //authorize("ADMIN"),
       this.workshopNoticeController.approveWorkshopNotice
+    );
+    this.router.delete(
+      `${this.path}/:workshopNoticeId`,
+      //authorize("ADMIN"),
+      this.workshopNoticeController.deleteWorkshopNotice
     );
   }
 };
