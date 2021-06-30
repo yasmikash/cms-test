@@ -19,5 +19,15 @@ module.exports = class UserRoute {
       // authorize("USER"),
       this.userController.getUser
     );
+    this.router.patch(
+      `${this.path}/update`,
+      // authorize("USER"),
+      this.userController.UpdateUser
+    );
+    this.router.delete(
+      `${this.path}/delete/:userId`,
+      // authorize("USER"),
+      this.userController.deleteUserById
+    );
   }
 };
